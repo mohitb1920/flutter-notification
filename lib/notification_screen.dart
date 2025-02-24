@@ -50,6 +50,7 @@ class NotificationServices {
 
       if (Platform.isIOS) {
         forgroundMessage();
+        showNotification(message);
       }
 
       if (Platform.isAndroid) {
@@ -102,8 +103,10 @@ class NotificationServices {
   // function to show visible notification when app is active
   Future<void> showNotification(RemoteMessage message) async {
     AndroidNotificationChannel channel = AndroidNotificationChannel(
-      message.notification!.android!.channelId.toString(),
-      message.notification!.android!.channelId.toString(),
+      // message.notification!.android!.channelId.toString(),
+      // message.notification!.android!.channelId.toString(),
+      message.notification?.android?.channelId ?? 'default_channel',
+      message.notification?.android?.channelId ?? 'Default Channel',
       importance: Importance.max,
       showBadge: true,
       playSound: true,
